@@ -9,6 +9,7 @@
     "circular-json": "latest",
     "react": "16.5.2",
     "react-dom": "16.5.2",
+    "react-highlight": "latest",
     "react-scripts": "2.0.3",
     "recast": "latest"
   },

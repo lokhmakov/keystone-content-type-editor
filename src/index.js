@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM             from 'react-dom'
+import Highlight            from 'react-highlight'
 import { print }            from 'recast'
 
 
@@ -8,6 +9,10 @@ import generateModel        from 'core/entity/api/generate/model'
 
 
 class App extends Component {
+  state = {
+    code: ``,
+  }
+
   componentDidMount = async () => {
     const [entity] = await query()
 
@@ -16,16 +21,21 @@ class App extends Component {
       fields: entity.fields,
     })
 
-    console.log(
-      print(
-        ast,
-        { tabWidth: 2, }
-      ).code
-    )    
+
+    const code = print(
+      ast,
+      { tabWidth: 2, }
+    ).code
+
+    this.setState({ code })
   }
 
   render() {
-    return null
+    return (
+      <Highlight language="javascript">
+        { this.state.code }
+      </Highlight>      
+    )
   }
 }
 
